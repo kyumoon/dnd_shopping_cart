@@ -1,0 +1,19 @@
+*{
+  border: 1px solid red;
+}
+
+.floatItem{
+  width: 2em;
+  height: 2em;
+  float: left;
+}
+
+.img{
+  width:100%;
+}
+
+.draggedItem{
+  font-size: 25;
+  font-weight: bold;
+  cursor: move;
+}
