@@ -65,8 +65,8 @@ export default class Board extends React.Component {
 
         return (
             <div>
-                <Cart position={1} moveItem={this.removeItem} itemList={itemList} getItem={this.getItem} cart />
-                <Cart position={2} moveItem={this.addItem} itemList={droppedItems} getItem={this.getItem} cart />
+                <Cart text={"ITEMS"} position={1} moveItem={this.removeItem} itemList={itemList} getItem={this.getItem} cart />
+                <Cart text={"CART"} position={2} moveItem={this.addItem} itemList={droppedItems} getItem={this.getItem} cart />
                 <Sum itemList={this.state.movedList}/>
             </div>
         )

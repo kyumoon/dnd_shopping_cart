@@ -24,7 +24,7 @@ function collect(connect: any, monitor: any) {
 }
 
 //@ts-ignore
-function BoardSquare({ itemList, position, connectDropTarget, isOver, props }) {
+function BoardSquare({ itemList, position, text, connectDropTarget, isOver, props }) {
   dragPosition = props?props.position:null;
   const cart = {
         position: 'relative' as PositionProperty,
@@ -44,7 +44,8 @@ function BoardSquare({ itemList, position, connectDropTarget, isOver, props }) {
   }
 
   return connectDropTarget(
-    <div>
+    <div className="cart">
+      <div className="watter_mark">{text}</div>
       <div style={cart}>
         {isOver && position !== props.position  &&
           <div style={dropTarget} />

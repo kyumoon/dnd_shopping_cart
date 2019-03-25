@@ -1,5 +1,21 @@
 *{
-  border: 1px solid red;
+  /* border: 1px solid red; */
+}
+
+.cart{
+  position: relative;
+  border: 1px solid gray;
+}
+
+.watter_mark{
+  position: absolute;
+  display: inline-block;
+  z-index: -99999;
+  color: #b3adad;
+  font-weight: 500;
+  font-size: 3em;
+  margin-top: 1.5em;
+  margin-left: 45%;
 }
 
 .floatItem{
