@@ -3,9 +3,10 @@ import { ItemTypes } from './Constants'
 import { DragSource } from 'react-dnd'
 import { checkPropTypes } from 'prop-types';
 
-const knightSource = {
+const ItemSource = {
   beginDrag(props:any) {
     return {
+      position: props.position,
       item: props.item
     }
   },
@@ -23,17 +24,18 @@ function collect(connect:any, monitor:any) {
   }
 }
 
-//@ts-ignore
-function Knight({ connectDragSource, isDragging, item }) {
+// @ts-ignore
+function Item({ connectDragSource, isDragging, item }) {
   return connectDragSource(
     <div className="floatItem draggedItem"
       style={{opacity: isDragging ? 0.5 : 1}}
       data-item={checkPropTypes.name}
     >
       <img className="img" src={item.url}/>
-      {item.name}
+      <div className="name">{item.name}</div>
+      <div className="price">{item.price}</div>
     </div>
   )
 }
 
-export default DragSource(ItemTypes.KNIGHT, knightSource, collect)(Knight)
+export default DragSource(ItemTypes.Ball, ItemSource, collect)(Item)

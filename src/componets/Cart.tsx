@@ -3,51 +3,56 @@ import * as React from 'react';
 // import { canMoveKnight, moveKnight } from './Game';
 import { ItemTypes } from './Constants';
 import { DropTarget } from 'react-dnd';
+import { PositionProperty } from 'csstype';
 
-let droppedItems: any;
+let dragPosition:any;
 const squareTarget = {
   drop(props: any, monitor: any) {
-    if (props.cart) {
+    if (props.cart && dragPosition !== props.position) {
       console.log('moved', props, monitor.getItem());
-      props.addItem(monitor.getItem().item);
+      props.moveItem(monitor.getItem().item);
     }
-    if(!props.itemList){
-      droppedItems = props.getItem();
-    }
-    
   }
 };
 
 function collect(connect: any, monitor: any) {
   return {
     connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver()
+    isOver: monitor.isOver(),
+    props: monitor.getItem()
   };
 }
 
 //@ts-ignore
-function BoardSquare({ x, y, itemList, connectDropTarget, isOver, children }) {
+function BoardSquare({ itemList, position, connectDropTarget, isOver, props }) {
+  dragPosition = props?props.position:null;
+  const cart = {
+        position: 'relative' as PositionProperty,
+        width: '100%',
+        height: '15em'
+  }
+
+  const dropTarget = {
+    position: 'absolute' as PositionProperty,
+    top: 0,
+    left: 0,
+    height: '100%',
+    width: '100%',
+    zIndex: 1,
+    opacity: 0.5,
+    backgroundColor: 'yellow',
+  }
+
   return connectDropTarget(
-    <div style={{
-      position: 'relative',
-      width: '100%',
-      height: '2em'
-    }}>
-      {isOver &&
-        <div style={{
-          position: 'absolute',
-          top: 0,
-          left: 0,
-          height: '100%',
-          width: '100%',
-          zIndex: 1,
-          opacity: 0.5,
-          backgroundColor: 'yellow',
-        }} />
-      }
-      {itemList||droppedItems}
+    <div>
+      <div style={cart}>
+        {isOver && position !== props.position  &&
+          <div style={dropTarget} />
+        }
+        {itemList}
+      </div>
     </div>
   );
 }
 
-export default DropTarget(ItemTypes.KNIGHT, squareTarget, collect)(BoardSquare);
+export default DropTarget(ItemTypes.Ball, squareTarget, collect)(BoardSquare);

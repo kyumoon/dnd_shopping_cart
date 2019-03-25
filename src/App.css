@@ -3,17 +3,35 @@
 }
 
 .floatItem{
-  width: 2em;
-  height: 2em;
+  width: 10em;
+  height: 10em;
+  /* height: 2em; */
   float: left;
 }
 
 .img{
-  width:100%;
+  width: 10em;
+  height: 10em;
 }
 
 .draggedItem{
-  font-size: 25;
+  /* size: 0.5em; */
   font-weight: bold;
   cursor: move;
+}
+
+.draggedItem .name{
+  font-size: 0.8em;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+
+.draggedItem .price{
+  font-size: 0.8em;
+  width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
